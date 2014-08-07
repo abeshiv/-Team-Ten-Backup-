@@ -1,31 +1,59 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    @*<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>*@
+
+<body onload="Slider();">
+
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+    <div id="slideshow">
+        <img id="1" src="~/Content/Pictures/Sun.jpg">
+        <img id="2" src="~/Content/Pictures/Flower.jpg">
+        <img id="3" src="~/Content/Pictures/Snowflake.jpg">
+        <img id="4" src="~/Content/Pictures/Tree.jpg">
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>
+    <div class="row">
+        <div class="col-md-6" align="center">
+            <img src="~/Content/Pictures/L.jpg">
+            <p>Want to review a place you just visited?</p>
+            <p>Then click the button below to do a review of where you have been.</p>
+           <p> <button type="button">
+           @Html.ActionLink("Talk About the Waves", "Create", "LocationReview")
+                </button></p>
+        </div>
+        <div class="col-md-6" align="center">
+            <img src="~/Content/Pictures/LS.jpg">
+            <p>Can't decide where to go?</p>
+            <p>Click the link to search for reviews for vacation spots you want to go.</p>
+            <p><button type="button">
+                @Html.ActionLink("Find Some Waves", "Index", "LocationReview")
+            </button></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" align="center">
+            <img src="~/Content/Pictures/A.jpg">
+            <p>Want to talk about your favorite activity?</p>
+            <p>Head to this page to talk about the activities you experienced.</p>
+            <p><button type="button">
+                @Html.ActionLink("Experience the Waves", "Create", "ActivityReview")
+            </button></p>
+        </div>
+        <div class="col-md-6" align="center">
+            <img src="~/Content/Pictures/AR.jpg">
+            <p>Don't know what to do?</p>
+            <p>Come here to read some reviews of the activities of a specific place.</p>
+            <p><button type="button">
+                @Html.ActionLink("Surf the Waves", "Index", "ActivityReview")
+            </button></p>
+        </div>
+    </div>
+
+</body>

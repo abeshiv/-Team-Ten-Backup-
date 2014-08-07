@@ -241,6 +241,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Pictures\A.jpg" />
+    <Content Include="Content\Pictures\AR.jpg" />
+    <Content Include="Content\Pictures\L.jpg" />
+    <Content Include="Content\Pictures\LS.jpg" />
+    <Content Include="Content\Pictures\VacationSurfer.jpg" />
+    <Content Include="Content\showtime.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -268,14 +274,22 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Content\jquery.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jse_form.js" />
+    <Content Include="Scripts\jse_search.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Content\slider.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Content\Pictures\Flower.jpg" />
+    <Content Include="Content\Pictures\Snowflake.jpg" />
+    <Content Include="Content\Pictures\Sun.jpg" />
+    <Content Include="Content\Pictures\Tree.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -358,6 +372,9 @@
     <Content Include="Views\SeasonActivity\Index.cshtml" />
     <Content Include="Views\ReviewViewModel\CreateReview.cshtml" />
     <Content Include="Views\Shared\_LocationReview.cshtml" />
+    <Content Include="Views\LocationReview\Results.cshtml" />
+    <Content Include="Views\Home\ChooseReview.cshtml" />
+    <Content Include="Views\Home\ChooseVacation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
