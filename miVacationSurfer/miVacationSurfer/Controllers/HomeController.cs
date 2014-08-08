@@ -22,7 +22,7 @@ namespace miVacationSurfer.Controllers
 
         public ActionResult ChooseReview()
         {
-            
+
 
             return View();
         }

@@ -15,7 +15,7 @@ namespace miVacationSurfer.Controllers
         private miVacationSurferEntities db = new miVacationSurferEntities();
 
         // GET: LocationReview
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.RatingSortParm = String.IsNullOrEmpty(sortOrder) ? "rating_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -23,6 +23,29 @@ namespace miVacationSurfer.Controllers
 
             var locationReviews = from s in db.LocationReviews
                                   select s;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                DateTime temp;
+                if (DateTime.TryParse(searchString, out temp))
+                {
+
+                }
+
+                int tempRating;
+                if (Int32.TryParse(searchString, out tempRating)) { }
+
+                locationReviews = locationReviews.Where(s => s.Location.Region.RegionName.ToUpper().Contains(searchString.ToUpper())
+                    || s.Location.LocationName.Contains(searchString)
+                    || (temp != null && (s.LocationDate >= temp && s.LocationDate <= temp))
+                    || ((s.LocationRating >= 1 || s.LocationRating <= 5) && (s.LocationRating == tempRating))
+                    || s.LocationPro.Contains(searchString)
+                    || s.LocationCon.Contains(searchString)
+                    || s.LocationReviewDetails.Contains(searchString));
+            }
+
 
             switch (sortOrder)
             {
@@ -49,45 +72,7 @@ namespace miVacationSurfer.Controllers
 
             return View(locationReviews.ToList());
         }
-        public ActionResult Results(string sortOrder)
-        {
-            ViewBag.RatingSortParm = String.IsNullOrEmpty(sortOrder) ? "rating_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewBag.LocationSortParm = String.IsNullOrEmpty(sortOrder) ? "location_desc" : "";
-            ViewBag.RegionSortParm = String.IsNullOrEmpty(sortOrder) ? "region_desc" : "";
-
-            var locationReviews = from s in db.LocationReviews
-                                  select s;
-
-            switch (sortOrder)
-            {
-                case "rating_desc":
-                    locationReviews = locationReviews.OrderByDescending(s => s.LocationRating);
-                    break;
-
-                case "Date":
-                    locationReviews = locationReviews.OrderBy(s => s.LocationDate);
-                    break;
-
-                case "date_desc":
-                    locationReviews = locationReviews.OrderByDescending(s => s.LocationDate);
-                    break;
-
-                case "location_desc":
-                    locationReviews = locationReviews.OrderByDescending(s => s.Location.LocationName);
-                    break;
-
-                case "region_desc":
-                    locationReviews = locationReviews.OrderByDescending(s => s.Location.Region.RegionName);
-                    break;
-
-                default:
-                    locationReviews = locationReviews.OrderBy(s => s.LocationRating);
-                    break;
-            }
-
-            return View(locationReviews.ToList());
-        }
+        
 
         // GET: LocationReview/Details/5
         public ActionResult Details(int? id)
