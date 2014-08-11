@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using miVacationSurfer;
-
+using PagedList;
 namespace miVacationSurfer.Controllers
 {
     public class LocationReviewController : Controller
@@ -15,12 +15,23 @@ namespace miVacationSurfer.Controllers
         private miVacationSurferEntities db = new miVacationSurferEntities();
 
         // GET: LocationReview
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.RegionSortParm = String.IsNullOrEmpty(sortOrder) ? "region_desc" : "";
             ViewBag.RatingSortParm = String.IsNullOrEmpty(sortOrder) ? "rating_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LocationSortParm = String.IsNullOrEmpty(sortOrder) ? "location_desc" : "";
 
+            if(searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
             var locationReviews = from s in db.LocationReviews
                                   select s;
 
@@ -49,6 +60,10 @@ namespace miVacationSurfer.Controllers
 
             switch (sortOrder)
             {
+                case "region_desc":
+                    locationReviews = locationReviews.OrderByDescending(s => s.Location.Region.RegionName);
+                    break;
+
                 case "rating_desc":
                     locationReviews = locationReviews.OrderByDescending(s => s.LocationRating);
                     break;
@@ -69,8 +84,9 @@ namespace miVacationSurfer.Controllers
                     locationReviews = locationReviews.OrderBy(s => s.LocationRating);
                     break;
             }
-
-            return View(locationReviews.ToList());
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(locationReviews.ToPagedList(pageNumber, pageSize));
         }
         
 
@@ -187,6 +203,7 @@ namespace miVacationSurfer.Controllers
         }
 
         // POST: LocationReview/Delete/5
+        [Authorize(Users = "team10@team10.com")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
