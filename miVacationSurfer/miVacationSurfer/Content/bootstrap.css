@@ -308,7 +308,7 @@ th {
 }
 .glyphicon-star:before {
   content: "\e006";
-  color: yellow;
+  color: darkgoldenrod;
   font-size: xx-large;
 }
 .glyphicon-star-empty:before {
@@ -956,6 +956,7 @@ img {
 .img-circle {
   border-radius: 50%;
 }
+
 hr {
   margin-top: 22px;
   margin-bottom: 22px;
@@ -2733,6 +2734,7 @@ select[multiple].input-lg {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  
 }
 .btn:focus,
 .btn:active:focus,
